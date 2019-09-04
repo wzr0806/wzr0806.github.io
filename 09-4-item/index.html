@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>动画轮播图</title>
+	<script src="jquery_1.12.4.min.js"></script>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+			text-decoration: none;
+		}
+		.btn{
+			width: 120px;
+			height: 40px;
+			line-height: 40px;
+			background:#ef5e4a;
+			border: none;
+			color: #fff;
+			margin-right: 10px;
+		}
+		.btn:active,.btn:hover{
+			background:#01a3a4;
+		}
+		.showbox{
+			text-align: center;
+		}
+		.show{
+			width: 600px;
+			margin: 0 auto;
+			position: relative;
+		}
+		/* 动画 */
+		.wang-enter,.wang2-leave-to{
+			left: -600px !important;
+			opacity: 0;
+		}
+		.wang-enter-active,.wang2-enter-active{
+			transition: all 1s;
+		}
+		.wang-leave-to,.wang2-enter{
+			left: 600px !important;
+			opacity: 0;
+		}
+		.wang-leave-active,.wang2-leave-active{
+			transition: all 1s;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="showbox">
+		<wang></wang>
+	</div>
+	
+	<!-- 模板 -->
+	<template id="wang">
+		<div>
+			<!-- 按钮 -->
+			<button class="btn" @click="prev">上一个</button>
+			<button class="btn" @click="next">下一个</button>
+			
+			<!-- 图片 -->
+			<div class="show">
+				<transition v-for="(i,$index) in arr"  :name ="tr_type">
+					<div style="width: 600px;position: absolute;left:0px;top:0px;" v-show="index==$index">
+						<img :src="i" alt="" style="width:600px">
+					</div>
+				</transition>
+			</div>
+			
+		</div>
+	</template>
+	
+	<script src="vue.js"></script>
+	<script src="vue-router.js"></script>
+	<script type="text/javascript">
+		Vue.component('wang',{
+			template:'#wang',
+			data(){
+				return{
+					tr_type:'wang',
+					index:0,
+					arr:[
+						"img/wsx.jpg",
+						"img/wsx2.jpg",
+						"img/wsx3.jpg",
+						"img/wsx4.jpg",
+						"img/wsx5.jpg",
+						"img/wsx6.jpg",
+						"img/wsx7.jpg",
+					]
+				}
+			},
+			methods:{
+				prev(){
+					this.tr_type = 'wang2'
+					this.index++
+					if(this.index >=this.arr.length){
+						this.index = 0
+						
+					}
+				},
+				next(){
+					this.tr_type = 'wang'
+					this.index--
+					if(this.index <=-1){
+						this.index = this.arr.length - 1
+						
+					}
+				}
+			}
+		})
+		
+		
+		
+		
+		new Vue({
+			el:'.showbox',
+		})
+	</script>
+</body>
+</html>
