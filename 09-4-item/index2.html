@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>导航条动画效果</title>
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+				list-style: none;
+				text-decoration: none;
+				-webkit-user-select: none;
+			}
+			.showbox{
+				color: #FFFFFF;
+			}
+			.nav{
+				line-height: 60px;
+				height: 60px;
+				width: 100%;
+				text-align: center;
+				background: #000;
+				cursor: pointer;
+			}
+			.nav_list{
+				background: #000000;
+				position: absolute;
+				top: 60px;
+				left:0px;
+				width: 100%;
+				z-index: 2;
+				text-align: center;
+				line-height: 60px;
+			}
+			.nav_list p{
+				border-bottom: 1px solid #ccc;
+				cursor: pointer;
+			}
+			.nav_list span{
+				position: absolute;
+				right: 20px;
+			}
+			
+			/* 升降动画  nav_s */
+			.nav_s-enter,.nav_s-leave-to{
+				top: 120px !important;
+				opacity: 0;
+			}
+			.nav_s-enter-active,.nav_s-leave-active{
+				transition: .35s;
+			}
+			/* 进入下一级 */
+			.en-enter{
+				left:-120px !important;
+				opacity: 0;
+			}
+			.en-leave-to{
+				left:-120px !important;
+				opacity: 0;
+			}
+			.en-enter-active,.en-leave-active{
+				transition: .35s;
+			}
+			
+			/* 返回 */
+			.return-enter,.return-leave-to{
+				opacity: 0;
+				top: 80px !important;
+			}
+			.return-enter-active,.return-leave-active{
+				transition: .35s;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="showbox">
+			<wang></wang>
+		</div>
+		<template id="wang">
+			<div>
+				<div style="position: relative;">
+					<div class="nav" @click="nav_s">首页</div>
+				</div>
+				<!-- 升降动画 -->
+				<transition :name="n_name">
+					<div class="nav_list" v-show="nav_s_type">
+						<div v-for="i in arr">
+							<p>
+								{{i.tit}}
+								<span v-if="i.arr.length" @click="enter_S(i.arr)">></span>
+							</p>
+
+						</div>
+					</div>
+				</transition>
+				<!-- 	返回上一级 -->
+				<transition name="return">
+					<div class="nav_list" v-show="left_type">
+						<p @click="return_S">返回上一级</p>
+						<div v-for="i in z_arr">
+							{{i}}
+						</div>
+					</div>
+				</transition>
+			</div>
+		</template>
+
+
+		<script src="vue.js"></script>
+		<script type="text/javascript">
+			Vue.component('wang', {
+				template: '#wang',
+				data() {
+					return {
+						// 首页点击开合
+						nav_s_type: false,
+
+						left_type: false,
+						
+						// 动画name 的切换
+						n_name: '',
+
+						z_arr: '',
+						arr: [{
+								tit: '首页',
+								arr: []
+							},
+							{
+								tit: '软件产品',
+								arr: ['联想', '戴尔']
+							},
+							{
+								tit: '测评中心',
+								arr: []
+							},
+							{
+								tit: '外设系列',
+								arr: ['VR', '鼠标']
+							},
+							{
+								tit: '联系我们',
+								arr: []
+							},
+						]
+					}
+				},
+				methods: {
+					nav_s() {
+						if(this.left_type){
+							this.left_type =false
+						}else{
+							this.n_name = 'nav_s'
+							this.nav_s_type = !this.nav_s_type
+						}
+						
+					},
+					enter_S(arr) {
+						this.n_name = 'en'
+						this.nav_s_type = false
+						this.z_arr = arr
+						setTimeout(() => {
+							this.left_type = true
+						}, 200)
+					},
+					return_S() {
+						this.left_type = false
+						this.nav_s_type = true
+					}
+				},
+
+			})
+
+			new Vue({
+				el: '.showbox',
+			})
+		</script>
+	</body>
+</html>
