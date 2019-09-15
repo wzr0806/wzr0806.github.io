@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>关于我</title>
+	<link rel="icon" href="img/3.jpg">
+	<meta charset="utf-8">
+	<meta name="author" content="">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<meta name="description" content="Magnetic is a stunning responsive HTML5/CSS3 photography/portfolio website template"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="js/main.js"></script>
+    <style>
+    	.show{
+    		/*background-image: url(img/1.png);
+    		background-position: 10000px -80px;
+    		background-size: cover;*/
+    		background: lightblue;
+    	}
+    	.more{
+    		width: 50%;
+    		display: none;
+    		margin:20px auto;
+    	}
+    	.item img{
+    		width: 100%;
+    		height: 100%;
+    	}
+    	.item{
+    		height: 700px;
+    	}
+    </style>
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<a href="index.html"><img src="img/logo.png" title="点击返回主页" alt="Magnetic" style="width: 32px;height:32px" /></a>
+		</div><!-- end logo -->
+
+		<div id="menu_icon"></div>
+		<nav>
+			<ul>
+				<li><a href="index.html" class="selected">Home</a></li>
+				<li><a href="about.html">About</a></li>
+			</ul>
+		</nav><!-- end navigation menu -->
+
+		<div class="footer clearfix">
+			<ul class="social clearfix">
+				<li><a href="#" class="fb" data-title="Facebook"></a></li>
+				<li><a href="#" class="google" data-title="Google +"></a></li>
+				<li><a href="#" class="behance" data-title="Behance"></a></li>
+				<!--<li><a href="#" class="twitter" data-title="Twitter"></a></li>
+				<li><a href="#" class="dribble" data-title="Dribble"></a></li>-->
+				<li><a href="#" class="rss" data-title="RSS"></a></li>
+			</ul><!-- end social -->
+
+			<div class="rights">
+				<p>Copyright © 2014 magnetic.</p>
+			</div><!-- end rights -->
+		</div ><!-- end footer -->
+	</header><!-- end header -->
+	<section class="main clearfix container-fluid ">
+		<div class="jumbotron show" style="margin-top: 40px">
+		  <h1 style="color: #fff">王卓然</h1>
+		  <p><a class="btn btn-primary btn-lg btn-success" role="button" id="btn">了解更多我</a></p>
+		  <p><a class="btn btn-primary btn-lg btn-success" role="button" id="close" style="display: none;">点击关闭</a></p>
+		</div>
+		<div class="more">
+			<!-- 轮播图 -->
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  <!-- Indicators -->
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				  </ol>
+
+				  <!-- Wrapper for slides -->
+				  <div class="carousel-inner" role="listbox">
+				    <div class="item active">
+				      <img src="img/3.jpg" alt="...">
+				      <div class="carousel-caption">
+
+				        <!-- ...可以写文字 -->
+				      </div>
+				    </div>
+				    <div class="item">
+				      <img src="img/2.jpg" alt="...">
+				      <div class="carousel-caption">
+				        <!-- ...可以写文字 -->
+				      </div>
+				    </div>
+				    <div class="item">
+				      <img src="img/5.jpg" alt="...">
+				      <div class="carousel-caption">
+				        <!-- ...可以写文字 -->
+				      </div>
+				    </div>
+				  </div>
+
+				  <!-- Controls -->
+				  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+			<!--  -->
+		</div>
+	</section>
+</body>
+	<script type="text/javascript">
+		$('#btn').click(function(){
+			$('.more').css({'display':'table'})
+			$(this).hide()
+			$('#close').show()
+		})
+		$('#close').click(function(){
+			$('.more').css({'display':'none'})
+			$(this).hide()
+			$('#btn').show()
+		})
+	</script>
+</html>
